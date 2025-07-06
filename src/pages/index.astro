@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Features from "../components/Features.astro";
+import Products from "../components/Products.astro";
+import Solutions from "../components/Solutions.astro";
+import Testimonials from "../components/Testimonials.astro";
+import FAQ from "../components/FAQ.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<Layout title="Premium Water Filtration Solutions">
+	<Header slot="header" />
+
+	<Hero />
+	<About />
+	<Features />
+	<Products />
+	<!-- <Solutions /> -->
+	<!-- <Testimonials /> -->
+	<FAQ />
+	<Contact />
+
+	<Footer slot="footer" />
+</Layout>

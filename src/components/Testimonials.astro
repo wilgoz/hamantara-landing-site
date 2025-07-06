@@ -1,0 +1,98 @@
+---
+const testimonials = [
+    {
+        quote: "The UF membrane water filter from Hamantara completely transformed our drinking water quality. Easy installation and maintenance with superior results.",
+        author: "Budi Santoso",
+        title: "Homeowner",
+        avatar: "/placeholder-avatar.jpg",
+    },
+    {
+        quote: "During the floods in our area, Hamantara's emergency filtration unit was a lifesaver. It provided our community with clean water when we needed it most.",
+        author: "Dr. Dewi Putri",
+        title: "Relief Coordinator",
+        avatar: "/placeholder-avatar.jpg",
+    },
+    {
+        quote: "As a restaurant owner, water quality is essential for us. The commercial kitchen filtration system from PT. HANDAL PRIMA NUSANTARA has been outstanding.",
+        author: "Ahmad Rahman",
+        title: "Restaurant Owner",
+        avatar: "/placeholder-avatar.jpg",
+    },
+];
+---
+
+<section id="testimonials" class="section bg-neutral-50">
+    <div class="container-custom">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2
+                class="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light"
+            >
+                What Our Clients Say
+            </h2>
+            <p class="text-lg text-neutral-800">
+                Discover how our water filtration solutions have made a
+                difference for homes and businesses across Indonesia.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {
+                testimonials.map((testimonial, index) => (
+                    <div
+                        class={`bg-white p-8 rounded-lg shadow-card relative ${index === 1 ? "md:transform md:-translate-y-4" : ""}`}
+                    >
+                        <div class="absolute top-0 left-0 transform -translate-x-3 -translate-y-3">
+                            <svg
+                                width="48"
+                                height="48"
+                                viewBox="0 0 48 48"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M14.028 6C6.684 11.184 1.5 19.68 1.5 29.04C1.5 36.672 6.108 41.856 12.3 41.856C17.772 41.856 22.092 37.536 22.092 32.064C22.092 26.88 18.636 23.424 13.74 23.424C12.876 23.424 11.724 23.712 11.148 24C11.724 18.528 17.196 13.632 22.38 11.76L14.028 6ZM38.796 6C31.452 11.184 26.268 19.68 26.268 29.04C26.268 36.672 30.876 41.856 37.068 41.856C42.54 41.856 46.86 37.536 46.86 32.064C46.86 26.88 43.404 23.424 38.508 23.424C37.644 23.424 36.492 23.712 35.916 24C36.492 18.528 41.964 13.632 47.148 11.76L38.796 6Z"
+                                    fill="#F0F0F0"
+                                />
+                            </svg>
+                        </div>
+
+                        <div class="mb-6 pt-6">
+                            <p class="text-neutral-700 italic relative z-10">
+                                "{testimonial.quote}"
+                            </p>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-neutral-200 rounded-full overflow-hidden mr-4">
+                                <div class="w-full h-full flex items-center justify-center text-neutral-400">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutral-900">
+                                    {testimonial.author}
+                                </h4>
+                                <p class="text-sm text-neutral-600">
+                                    {testimonial.title}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
