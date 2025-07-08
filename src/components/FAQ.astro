@@ -1,108 +1,113 @@
 ---
 const faqs = [
-    {
-        question: "How do ultrafiltration membrane filters work?",
-        answer: "Ultrafiltration (UF) membranes work by using pressure to force water through a semi-permeable membrane with extremely small pores (0.02 micron), effectively removing bacteria, viruses, and other contaminants while allowing minerals and beneficial elements to pass through. This provides clean, safe water without removing the natural minerals your body needs.",
-    },
-    {
-        question: "How long do the filters last before needing replacement?",
-        answer: "Our UF membrane filters typically last 12-24 months depending on usage and water quality. Our systems include indicators that notify you when it's time to replace filters, ensuring optimal performance and water quality at all times.",
-    },
-    {
-        question:
-            "Do I need a professional to install your water filtration systems?",
-        answer: "While our home and kitchen systems are designed for easy DIY installation with clear instructions, we recommend professional installation for whole-house systems to ensure optimal performance. We can arrange installation services through our network of certified technicians.",
-    },
-    {
-        question: "Are your emergency water filtration units portable?",
-        answer: "Yes, our emergency water filtration units are designed to be lightweight, compact, and easily transportable. They can be quickly deployed in disaster situations and don't require electricity to operate, making them ideal for emergency preparedness and disaster relief.",
-    },
-    {
-        question:
-            "Do you offer maintenance services for your filtration systems?",
-        answer: "Yes, we offer comprehensive maintenance plans and services for all our filtration systems. Our technicians can perform regular check-ups, filter replacements, and system optimizations to ensure your water filtration system continues to deliver the highest quality water.",
-    },
-    {
-        question:
-            "Can your filters remove specific contaminants like lead or chlorine?",
-        answer: "Our advanced filtration systems use multiple filtration stages designed to target specific contaminants. While UF membranes excel at removing biological contaminants, our comprehensive systems also include activated carbon and other media to remove chemical contaminants like chlorine, lead, and others based on your specific needs.",
-    },
+  {
+    question: "How do ultrafiltration membrane filters work?",
+    answer:
+      "Ultrafiltration (UF) membranes work by using pressure to force water through a semi-permeable membrane with extremely small pores (0.02 micron), effectively removing bacteria, viruses, and other contaminants while allowing minerals and beneficial elements to pass through. This provides clean, safe water without removing the natural minerals your body needs.",
+  },
+  {
+    question: "How long do the filters last before needing replacement?",
+    answer:
+      "Our UF membrane filters typically last ~3-10 years without requiring replacements depending on usage, water quality and model used.",
+  },
+  {
+    question:
+      "Do I need a professional to install your water filtration systems?",
+    answer:
+      "While our home and kitchen systems are designed for easy DIY installation with clear instructions, we recommend professional installation for whole-house systems to ensure optimal performance. We can arrange installation services through our network of certified technicians.",
+  },
+  {
+    question: "Are your emergency water filtration units portable?",
+    answer:
+      "Yes, our emergency water filtration units are designed to be lightweight, compact, and easily transportable. They can be quickly deployed in disaster situations and don't require electricity to operate, making them ideal for emergency preparedness and disaster relief.",
+  },
+  {
+    question: "Do you offer maintenance services for your filtration systems?",
+    answer:
+      "Yes, we offer comprehensive maintenance plans and services for all our filtration systems. Our technicians can perform regular check-ups, filter replacements, and system optimizations to ensure your water filtration system continues to deliver the highest quality water.",
+  },
+  {
+    question:
+      "Can your filters remove specific contaminants like lead or chlorine?",
+    answer:
+      "Our advanced filtration systems use multiple filtration stages designed to target specific contaminants. While UF membranes excel at removing biological contaminants, our comprehensive systems also include activated carbon and other media to remove chemical contaminants like chlorine, lead, and others based on your specific needs.",
+  },
 ];
 ---
 
 <section id="faq" class="section relative bg-neutral-50 overflow-hidden">
-    <div class="container-custom relative z-10">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2
-                class="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light"
-            >
-                Frequently Asked Questions
-            </h2>
-            <p class="text-lg text-neutral-800">
-                Find answers to common questions about our water filtration
-                systems and services.
-            </p>
-        </div>
-
-        <div class="max-w-4xl mx-auto">
-            {
-                faqs.map((faq, index) => (
-                    <div class="mb-4">
-                        <details
-                            class="group bg-white rounded-lg shadow-sm border border-primary/10 overflow-hidden hover:shadow-md transition-all duration-300"
-                            open={index === 0}
-                        >
-                            <summary class="flex justify-between items-center font-semibold text-lg cursor-pointer focus:outline-none p-5 bg-gradient-to-r from-white to-primary/5">
-                                <span class="flex items-center">
-                                    <span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 text-primary shrink-0">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-4 w-4"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M12 21a9 9 0 100-18 9 9 0 000 18z"
-                                            />
-                                        </svg>
-                                    </span>
-                                    {faq.question}
-                                </span>
-                                <span class="transition group-open:rotate-180 text-primary">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M19 9l-7 7-7-7"
-                                        />
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="p-5 pt-0 group-open:animate-fadeIn">
-                                <p class="text-neutral-700 border-t border-neutral-100 pt-4">
-                                    {faq.answer}
-                                </p>
-                            </div>
-                        </details>
-                    </div>
-                ))
-            }
-        </div>
-
-        <div class="text-center mt-12">
-            <p class="mb-6">Don't see your question here?</p>
-            <a href="#contact" class="btn btn-primary"> Ask Us Directly </a>
-        </div>
+  <div class="container-custom relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2
+        class="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light"
+      >
+        Frequently Asked Questions
+      </h2>
+      <p class="text-lg text-neutral-800">
+        Find answers to common questions about our water filtration systems and
+        services.
+      </p>
     </div>
+
+    <div class="max-w-4xl mx-auto">
+      {
+        faqs.map((faq, index) => (
+          <div class="mb-4">
+            <details
+              class="group bg-white rounded-lg shadow-sm border border-primary/10 overflow-hidden hover:shadow-md transition-all duration-300"
+              open={index === 0}
+            >
+              <summary class="flex justify-between items-center font-semibold text-lg cursor-pointer focus:outline-none p-5 bg-gradient-to-r from-white to-primary/5">
+                <span class="flex items-center">
+                  <span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 text-primary shrink-0">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M12 21a9 9 0 100-18 9 9 0 000 18z"
+                      />
+                    </svg>
+                  </span>
+                  {faq.question}
+                </span>
+                <span class="transition group-open:rotate-180 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
+              <div class="p-5 pt-0 group-open:animate-fadeIn">
+                <p class="text-neutral-700 border-t border-neutral-100 pt-4">
+                  {faq.answer}
+                </p>
+              </div>
+            </details>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="mb-6">Don't see your question here?</p>
+      <a href="#contact" class="btn btn-primary"> Ask Us Directly </a>
+    </div>
+  </div>
 </section>
