@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hamantara.com/sitemap-index.xml
+
+# Disallow certain paths
+Disallow: /thank-you

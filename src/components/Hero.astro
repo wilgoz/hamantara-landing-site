@@ -43,7 +43,7 @@ const ultraProducts = [
 >
   <div class="container-custom relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div class="animate-fadeIn">
+      <div class="animate-fade-in">
         <div class="flex items-center mb-6">
           <div class="h-px w-12 bg-white/30"></div>
           <span
@@ -131,9 +131,11 @@ const ultraProducts = [
                   >
                     <Image
                       src={product.image}
-                      alt={product.title}
+                      alt={`${product.title} Ultrafiltration Membrane - ${product.length}mm x ${product.diameter}mm with ${product.poreSize} filtration capability`}
                       class="w-full h-4/5 object-contain object-center p-8 pt-12"
                       loading={index === 0 ? "eager" : "lazy"}
+                      width={500}
+                      height={500}
                     />
 
                     {/* Overlay for text legibility */}

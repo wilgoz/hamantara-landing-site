@@ -6,13 +6,16 @@ import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
 import Features from "../components/Features.astro";
 import Products from "../components/Products.astro";
-import Solutions from "../components/Solutions.astro";
-import Testimonials from "../components/Testimonials.astro";
 import FAQ from "../components/FAQ.astro";
 import Contact from "../components/Contact.astro";
+
+// SEO Metadata
+const title = "Premium Water Filtration Solutions";
+const description =
+  "Experience superior water quality with Hamantara's advanced ultrafiltration membrane technology. Providing clean, safe water for your home, business, and emergency needs.";
 ---
 
-<Layout title="Premium Water Filtration Solutions">
+<Layout title={title} description={description}>
   <Header slot="header" />
 
   <Hero />

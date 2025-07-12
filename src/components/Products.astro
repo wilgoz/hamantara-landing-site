@@ -53,10 +53,11 @@ const products = [
 ];
 ---
 
-<section id="products" class="section">
+<section id="products" class="section" aria-labelledby="products-heading">
   <div class="container-custom">
     <div class="text-center max-w-3xl mx-auto mb-16">
       <h2
+        id="products-heading"
         class="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light"
       >
         Our Premium Products
@@ -71,33 +72,73 @@ const products = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         products.map((product) => (
-          <a href={product.link} class="block">
-            <div class="bg-white rounded-lg overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer">
-              <div class="bg-neutral-100 w-full h-64 flex items-center justify-center relative overflow-hidden">
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div class="p-6 text-white">
-                    <h4 class="font-bold">{product.title}</h4>
-                    <p class="opacity-90">Click to explore</p>
+          <article class="h-full">
+            <a
+              href={product.link}
+              class="block h-full"
+              aria-labelledby={`product-${product.id}`}
+            >
+              <div class="bg-white rounded-lg overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer h-full flex flex-col">
+                <div class="bg-neutral-100 w-full h-64 flex items-center justify-center relative overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={`${product.title} - ${product.description.substring(0, 50)}...`}
+                    class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                    width={800}
+                    height={800}
+                    loading={product.id === 1 ? "eager" : "lazy"}
+                    decoding="async"
+                    quality={90}
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                    <div class="p-6 text-white">
+                      <p class="font-bold">{product.title}</p>
+                      <p class="opacity-90">Click to explore</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-neutral-900 mb-3">
-                  {product.title}
-                </h3>
-                <p class="text-neutral-700 mb-4">{product.description}</p>
+                <div class="p-6 flex flex-col flex-grow">
+                  <h3
+                    id={`product-${product.id}`}
+                    class="text-xl font-bold text-neutral-900 mb-3"
+                  >
+                    {product.title}
+                  </h3>
+                  <p class="text-neutral-700 mb-4">{product.description}</p>
 
-                <ul class="space-y-2 mb-6">
-                  {product.features.map((feature) => (
-                    <li class="flex items-center">
+                  <ul class="space-y-2 mb-6">
+                    {product.features.map((feature) => (
+                      <li class="flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 text-secondary mr-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div class="flex justify-between items-center mt-auto">
+                    <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                      {product.category === "home"
+                        ? "POE Systems"
+                        : "Emergency Units"}
+                    </span>
+                    <span class="text-primary font-medium flex items-center">
+                      Learn More
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 text-secondary mr-2"
+                        class="h-5 w-5 ml-1"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -106,41 +147,15 @@ const products = [
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M5 13l4 4L19 7"
+                          d="M9 5l7 7-7 7"
                         />
                       </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div class="flex justify-between items-center">
-                  <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                    {product.category === "home"
-                      ? "POE Systems"
-                      : "Emergency Units"}
-                  </span>
-                  <span class="text-primary font-medium flex items-center">
-                    Learn More
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 ml-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </span>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </article>
         ))
       }
     </div>
@@ -151,4 +166,29 @@ const products = [
       </a>
     </div>
   </div>
+
+  <!-- Structured data for product listings -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: products.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Product",
+          name: product.title,
+          description: product.description,
+          image: new URL(product.image.src, Astro.site || Astro.url.origin)
+            .href,
+          url: new URL(product.link, Astro.site || Astro.url.origin).href,
+          brand: {
+            "@type": "Brand",
+            name: "Hamantara",
+          },
+        },
+      })),
+    })}
+  />
 </section>

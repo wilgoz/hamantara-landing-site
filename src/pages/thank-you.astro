@@ -2,9 +2,19 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+// SEO Metadata
+const title = "Thank You - Message Sent Successfully";
+const description =
+  "Thank you for contacting PT. Handal Prima Nusantara. We have received your message and will get back to you shortly about our premium water filtration solutions.";
 ---
 
-<Layout title="Thank You - Message Sent Successfully">
+<Layout
+  title={title}
+  description={description}
+  canonicalURL={Astro.url.href}
+  robots="noindex, nofollow"
+>
   <Header slot="header" />
 
   <div class="pt-16">

@@ -2,11 +2,18 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { Image } from 'astro:assets';
-import trayaPoe15000Image from '../../assets/products/TRAYA POE 15000.png';
+import { Image } from "astro:assets";
+import trayaPoe15000Image from "../../assets/products/TRAYA POE 15000.png";
+
+// SEO Metadata
+const title = "TRAYA POE 15000 - Premium Home Water Filtration System";
+const description =
+  "The TRAYA POE 15000 is a high-capacity 15,000 LPD Point of Entry ultrafiltration system, providing clean, safe water for your entire home. TKDN & SNI certified with extended filter lifespan.";
+const keywords =
+  "TRAYA POE 15000, water filtration system, home water filter, point of entry, ultrafiltration membrane, whole house water filter, 15000 LPD, clean water solutions";
 ---
 
-<Layout title="TRAYA POE 15000 - Home Water Filtration System">
+<Layout title={title} description={description} keywords={keywords}>
   <Header slot="header" />
 
   <div class="pt-16">

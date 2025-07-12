@@ -2,62 +2,127 @@
 import "../styles/global.css";
 
 interface Props {
-    title: string;
-    description?: string;
+  title: string;
+  description?: string;
+  canonicalURL?: string;
+  keywords?: string;
+  robots?: string;
 }
 
 const {
-    title,
-    description = "Premium water filtration solutions by PT. Handal Prima Nusantara",
+  title,
+  description = "Premium water filtration solutions by PT. Handal Prima Nusantara",
+  canonicalURL = Astro.url.href,
+  keywords = "water filtration, ultrafiltration membrane, water purification, clean water solutions, home water filtration, emergency water, PT Handal Prima Nusantara, Indonesia water solutions",
+  robots = "index, follow",
 } = Astro.props;
+
+const siteName = "Hamantara - PT. Handal Prima Nusantara";
 ---
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title} | Hamantara</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
-            rel="stylesheet"
-        />
-        <style is:global>
-            html {
-                scroll-behavior: smooth;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="PT. Handal Prima Nusantara" />
+    <meta name="robots" content={robots} />
 
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-weight: 600;
-            }
-        </style>
-    </head>
-    <body class="bg-white relative">
-        <div class="fixed inset-0 z-0 opacity-[0.03]">
-            <div
-                class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNU0xOCAzNmMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNU0zNiA0MmMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNW0xOC0xMmMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNXoiLz48cGF0aCBkPSJNNTcgMTJhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbTAgMThhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbTAgMThhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbS05IDlhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbS0xOCAwYTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wLTE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wLTE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0tMTgtOWEzIDMgMCAxIDAtNiAwIDMgMyAwIDAgMCA2IDBtMCAxOGEzIDMgMCAxIDAtNiAwIDMgMyAwIDAgMCA2IDBtMCAxOGEzIDMgMCAxIDAtNiAwIDMgMyAwIDAgMCA2IDBNMyAzYTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wIDE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wIDE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMCIgZmlsbC1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')]"
-            >
-            </div>
-        </div>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.svg" />
 
-        <slot name="header" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
 
-        <main class="relative z-10">
-            <slot />
-        </main>
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Hamantara</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+      }
 
-        <slot name="footer" />
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 600;
+      }
+    </style>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {});
-        </script>
-    </body>
+    <!-- Structured Data (JSON-LD) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        headline: title,
+        description: description,
+        url: Astro.url.href,
+        publisher: {
+          "@type": "Organization",
+          name: "PT. Handal Prima Nusantara",
+          logo: {
+            "@type": "ImageObject",
+            url: new URL("/logo.svg", Astro.site || Astro.url.origin).href,
+          },
+        },
+      })}
+    />
+
+    <!-- Organization Schema -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "PT. Handal Prima Nusantara",
+        alternateName: "Hamantara",
+        url: Astro.site || Astro.url.origin,
+        logo: new URL("/logo.svg", Astro.site || Astro.url.origin).href,
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+628176407888",
+          contactType: "sales",
+          availableLanguage: ["English", "Indonesian"],
+        },
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Setiabudi Atrium Suite 203",
+          addressLocality: "Jakarta Selatan",
+          postalCode: "12920",
+          addressCountry: "ID",
+        },
+      })}
+    />
+  </head>
+  
+  <body class="bg-white relative">
+    <div class="fixed inset-0 z-0 opacity-[0.03]">
+      <div
+        class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNU0xOCAzNmMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNU0zNiA0MmMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNW0xOC0xMmMtMS4zNiAwLTIuNS0xLjEyNS0yLjUtMi41czEuMTQtMi41IDIuNS0yLjUgMi41IDEuMTI1IDIuNSAyLjUtMS4xNCAyLjUtMi41IDIuNXoiLz48cGF0aCBkPSJNNTcgMTJhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbTAgMThhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbTAgMThhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbS05IDlhMyAzIDAgMSAwLTYgMCAzIDMgMCAwIDAgNiAwbS0xOCAwYTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wLTE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wLTE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0tMTgtOWEzIDMgMCAxIDAtNiAwIDMgMyAwIDAgMCA2IDBtMCAxOGEzIDMgMCAxIDAtNiAwIDMgMyAwIDAgMCA2IDBtMCAxOGEzIDMgMCAxIDAtNiAwIDMgMyAwIDAgMCA2IDBNMyAzYTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wIDE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMG0wIDE4YTMgMyAwIDEgMC02IDAgMyAzIDAgMCAwIDYgMCIgZmlsbC1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')]"
+      >
+      </div>
+    </div>
+
+    <slot name="header" />
+
+    <main class="relative z-10">
+      <slot />
+    </main>
+
+    <slot name="footer" />
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {});
+    </script>
+  </body>
 </html>

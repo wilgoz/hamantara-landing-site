@@ -2,11 +2,20 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { Image } from 'astro:assets';
-import trayaEu6000Image from '../../assets/products/TRAYA EU 6000.png';
+import { Image } from "astro:assets";
+import trayaEu6000Image from "../../assets/products/TRAYA EU 6000.png";
+
+// SEO Metadata
+const title = "TRAYA EU 6000-M - Emergency Disaster Water Filtration Unit";
+const description = "The TRAYA EU 6000 is a portable 6,000 LPD Emergency Unit (EU) ultrafiltration system designed for disaster relief, emergency situations, and remote areas.";
+const keywords = "TRAYA EU 6000, emergency water filter, disaster relief, portable water filtration, ultrafiltration membrane, 6000 LPD, emergency water, no electricity";
 ---
 
-<Layout title="TRAYA EU 6000-M - Emergency Disaster Water Filtration Unit">
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
   <Header slot="header" />
 
   <div class="pt-16">
