@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import { Image } from 'astro:assets';
+import trayaPoe15000Image from '../../assets/products/TRAYA POE 15000.png';
 ---
 
 <Layout title="TRAYA POE 15000 - Home Water Filtration System">
@@ -56,8 +58,8 @@ import Footer from "../../components/Footer.astro";
             </a>
           </div>
           <div class="flex justify-center">
-            <img
-              src="/products/TRAYA POE 15000.png"
+            <Image
+              src={trayaPoe15000Image}
               alt="TRAYA POE 15000 Water Filtration System"
               class="max-w-md w-full h-auto"
             />

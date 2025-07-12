@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import { Image } from 'astro:assets';
+import trayaEu6000Image from '../../assets/products/TRAYA EU 6000.png';
 ---
 
 <Layout title="TRAYA EU 6000-M - Emergency Disaster Water Filtration Unit">
@@ -56,8 +58,8 @@ import Footer from "../../components/Footer.astro";
             </a>
           </div>
           <div class="flex justify-center">
-            <img
-              src="/products/TRAYA EU 6000.png"
+            <Image
+              src={trayaEu6000Image}
               alt="TRAYA EU 6000-M Emergency Water Filtration System"
               class="max-w-md w-full h-auto"
             />

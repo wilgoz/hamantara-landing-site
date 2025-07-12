@@ -1,5 +1,6 @@
 ---
-
+import { Image } from "astro:assets";
+import companyImage from "../assets/company.jpg";
 ---
 
 <section id="about" class="section relative bg-neutral-50 overflow-hidden">
@@ -77,8 +78,8 @@
           <div
             class="bg-gradient-to-b from-neutral-100 to-white w-full h-96 flex items-center justify-center relative overflow-hidden"
           >
-            <img
-              src="/company.jpg"
+            <Image
+              src={companyImage}
               alt="PT. Handal Prima Nusantara Company"
               class="w-full h-full object-cover"
             />

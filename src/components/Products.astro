@@ -1,4 +1,9 @@
 ---
+import { Image } from "astro:assets";
+import trayaPoe15000 from "../assets/products/TRAYA POE 15000.png";
+import trayaPoe12000 from "../assets/products/TRAYA POE 12000.png";
+import trayaEu6000 from "../assets/products/TRAYA EU 6000.png";
+
 const products = [
   {
     id: 1,
@@ -11,7 +16,7 @@ const products = [
       "Extended filter lifespan",
       "Easy maintenance",
     ],
-    image: "/products/TRAYA POE 15000.png",
+    image: trayaPoe15000,
     category: "home",
     link: "/products/traya-poe-15000",
   },
@@ -26,7 +31,7 @@ const products = [
       "Compact residential design",
       "Easy maintenance",
     ],
-    image: "/products/TRAYA POE 12000.png",
+    image: trayaPoe12000,
     category: "home",
     link: "/products/traya-poe-12000",
   },
@@ -41,7 +46,7 @@ const products = [
       "Portable design",
       "No electricity required",
     ],
-    image: "/products/TRAYA EU 6000.png",
+    image: trayaEu6000,
     category: "emergency",
     link: "/products/traya-eu-6000",
   },
@@ -69,7 +74,7 @@ const products = [
           <a href={product.link} class="block">
             <div class="bg-white rounded-lg overflow-hidden shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer">
               <div class="bg-neutral-100 w-full h-64 flex items-center justify-center relative overflow-hidden">
-                <img
+                <Image
                   src={product.image}
                   alt={product.title}
                   class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
