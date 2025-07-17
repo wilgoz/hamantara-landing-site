@@ -263,6 +263,32 @@ const ultraProducts = [
                 ))
               }
             </div>
+
+            <!-- Radial Progress Indicator -->
+            <div class="absolute top-4 right-4 z-20 w-6 h-6">
+              <svg class="w-full h-full" viewBox="0 0 36 36">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.1)"
+                  stroke-width="2"></circle>
+                <circle
+                  id="carousel-radial-progress"
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.7)"
+                  stroke-width="2"
+                  stroke-dasharray="100 100"
+                  stroke-dashoffset="100"
+                  stroke-linecap="round"
+                  transform="rotate(-90 18 18)"
+                  class="transition-all duration-200 ease-linear"></circle>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -296,104 +322,167 @@ const ultraProducts = [
 
 <script>
   // Carousel functionality
-  let currentSlide = 0;
-  const totalSlides = document.querySelectorAll(".carousel-slide").length;
-
-  function showSlide(slideIndex: number) {
-    // Hide all slides
-    document.querySelectorAll(".carousel-slide").forEach((slide, index) => {
-      if (index === slideIndex) {
-        slide.classList.remove("opacity-0");
-        slide.classList.add("opacity-100");
-      } else {
-        slide.classList.remove("opacity-100");
-        slide.classList.add("opacity-0");
-      }
-    });
-
-    // Update indicators
-    document
-      .querySelectorAll(".carousel-indicator")
-      .forEach((indicator, index) => {
-        if (index === slideIndex) {
-          indicator.classList.add("bg-white");
-          indicator.classList.remove("bg-white/20");
-        } else {
-          indicator.classList.remove("bg-white");
-          indicator.classList.add("bg-white/20");
-        }
-      });
-
-    currentSlide = slideIndex;
-  }
-
-  function nextSlide() {
-    const next = (currentSlide + 1) % totalSlides;
-    showSlide(next);
-  }
-
-  function prevSlide() {
-    const prev = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(prev);
-  }
-
-  // Event listeners
   document.addEventListener("DOMContentLoaded", () => {
+    // Cache DOM elements
+    const slides = document.querySelectorAll(".carousel-slide");
+    const indicators = document.querySelectorAll(".carousel-indicator");
     const nextBtn = document.getElementById("next-btn");
     const prevBtn = document.getElementById("prev-btn");
-    const indicators = document.querySelectorAll(".carousel-indicator");
     const carousel = document.getElementById("carousel-container");
+    const radialProgress = document.getElementById("carousel-radial-progress");
 
-    let autoPlayInterval: number | null = null;
+    // Constants and state
+    const totalSlides = slides.length;
+    const slideInterval = 5000; // 5 seconds per slide
 
-    // Auto-play functions
-    const startAutoPlay = () => {
-      // Clear any existing interval first
-      if (autoPlayInterval) {
-        clearInterval(autoPlayInterval);
+    let currentSlide = 0;
+    let autoPlayTimer: ReturnType<typeof setTimeout> | null = null;
+    let progressTimer: any = null; // Will hold requestAnimationFrame ID
+    let progress = 0; // 0-100 progress percentage
+
+    function showSlide(index: number) {
+      // Update slides visibility
+      slides.forEach((slide, i) => {
+        const isActive = i === index;
+        slide.classList.toggle("opacity-0", !isActive);
+        slide.classList.toggle("opacity-100", isActive);
+      });
+
+      // Update indicators
+      indicators.forEach((indicator, i) => {
+        indicator.classList.toggle("bg-white", i === index);
+        indicator.classList.toggle("bg-white/20", i !== index);
+      });
+
+      currentSlide = index;
+
+      startProgress(0);
+    }
+
+    // Progress indicator control
+    function startProgress(initialValue = 0) {
+      // Clear any existing timer
+      if (progressTimer) {
+        cancelAnimationFrame(progressTimer as unknown as number);
+        progressTimer = null;
       }
-      autoPlayInterval = window.setInterval(nextSlide, 5000);
-    };
 
-    const stopAutoPlay = () => {
-      if (autoPlayInterval) {
-        clearInterval(autoPlayInterval);
-        autoPlayInterval = null;
+      // Set initial state
+      progress = initialValue;
+      let lastTimestamp = performance.now();
+      updateProgressDisplay();
+
+      function updateFrame(timestamp: number) {
+        // Calculate time elapsed since last frame
+        const elapsed = timestamp - lastTimestamp;
+        lastTimestamp = timestamp;
+
+        // Update progress based on elapsed time
+        progress = Math.min(100, progress + (100 * elapsed) / slideInterval);
+        updateProgressDisplay();
+
+        // Continue animation or stop when complete
+        if (progress < 100) {
+          progressTimer = requestAnimationFrame(
+            updateFrame
+          ) as unknown as ReturnType<typeof setInterval>;
+        } else {
+          progressTimer = null;
+        }
       }
-    };
 
+      // Start the animation loop
+      progressTimer = requestAnimationFrame(
+        updateFrame
+      ) as unknown as ReturnType<typeof setInterval>;
+    }
+
+    // Convert progress (0-100) to stroke-dashoffset (100-0)
+    function updateProgressDisplay() {
+      if (radialProgress) {
+        radialProgress.style.strokeDashoffset = (100 - progress).toString();
+      }
+    }
+
+    // Navigation functions
+    function nextSlide() {
+      showSlide((currentSlide + 1) % totalSlides);
+    }
+    function prevSlide() {
+      showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    }
+
+    // Auto-play control
+    function autoPlay(action: "start" | "pause" | "resume") {
+      // Clear existing timers
+      if (autoPlayTimer) {
+        clearTimeout(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+
+      switch (action) {
+        case "start":
+          startProgress(0);
+          autoPlayTimer = setTimeout(() => {
+            nextSlide();
+            autoPlayTimer = setInterval(nextSlide, slideInterval);
+          }, slideInterval);
+          break;
+
+        case "pause":
+          if (progressTimer) {
+            cancelAnimationFrame(progressTimer as unknown as number);
+            progressTimer = null;
+          }
+          break;
+
+        case "resume":
+          startProgress(progress);
+
+          // Schedule next slide based on remaining time
+          const remainingTime = ((100 - progress) * slideInterval) / 100;
+          autoPlayTimer = setTimeout(() => {
+            nextSlide();
+            autoPlayTimer = setInterval(nextSlide, slideInterval);
+          }, remainingTime);
+          break;
+      }
+    }
+
+    // Event listeners
     if (nextBtn) {
       nextBtn.addEventListener("click", () => {
-        stopAutoPlay();
+        autoPlay("pause");
         nextSlide();
-        startAutoPlay(); // Restart auto-play after manual interaction
+        autoPlay("start");
       });
     }
 
     if (prevBtn) {
       prevBtn.addEventListener("click", () => {
-        stopAutoPlay();
+        autoPlay("pause");
         prevSlide();
-        startAutoPlay(); // Restart auto-play after manual interaction
+        autoPlay("start");
       });
     }
 
     // Indicator click handlers
     indicators.forEach((indicator, index) => {
       indicator.addEventListener("click", () => {
-        stopAutoPlay();
+        autoPlay("pause");
         showSlide(index);
-        startAutoPlay(); // Restart auto-play after manual interaction
+        autoPlay("start");
       });
     });
 
-    // Pause auto-play on hover
+    // Pause/resume on hover
     if (carousel) {
-      carousel.addEventListener("mouseenter", stopAutoPlay);
-      carousel.addEventListener("mouseleave", startAutoPlay);
+      carousel.addEventListener("mouseenter", () => autoPlay("pause"));
+      carousel.addEventListener("mouseleave", () => autoPlay("resume"));
     }
 
-    // Start auto-play initially
-    startAutoPlay();
+    // Start the carousel
+    showSlide(0);
+    autoPlay("start");
   });
 </script>
